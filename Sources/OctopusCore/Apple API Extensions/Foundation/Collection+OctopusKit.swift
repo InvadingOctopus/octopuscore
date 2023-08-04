@@ -32,8 +32,6 @@ public extension Collection where Index: Comparable {
 // MARK: - Randomization
 // Created by ShinryakuTako@invadingoctopus.io on 2017/10/07.
 
-import GameplayKit
-
 public extension Collection where Index == Int {
         
     /// Returns a random element from this array whose index is not in `skippingIndices`.
@@ -61,5 +59,5 @@ public extension Collection where Index == Int {
             return nil
         }
     }
-    
+
 }

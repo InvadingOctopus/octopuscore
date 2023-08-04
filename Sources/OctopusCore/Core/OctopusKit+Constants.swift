@@ -8,8 +8,6 @@
 
 import Foundation
 
-public final class OctopusKit {}
-
 extension OctopusKit {
     
     /// Encapsulates global constants that may be used by various parts of the OctopusKit.
