@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import OctopusKit
+@testable import OctopusCore
 
 final class OKLogTests: XCTestCase {
     
