@@ -29,9 +29,6 @@ public typealias OSGestureRecognizerDelegate    = NSGestureRecognizerDelegate
 public typealias OSClickOrTapGestureRecognizer  = NSClickGestureRecognizer
 public typealias OSPanGestureRecognizer         = NSPanGestureRecognizer
 
-public typealias OSMouseOrTouchEventComponent           = MouseEventComponent
-public typealias OSClickOrTapGestureRecognizerComponent = ClickGestureRecognizerComponent
-
 #elseif canImport(UIKit)
 
 import UIKit
