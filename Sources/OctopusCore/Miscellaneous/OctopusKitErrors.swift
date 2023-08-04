@@ -11,4 +11,9 @@ import Foundation
 /// A list of errors that may be thrown by OctopusKit APIs.
 public enum OKError: Error {
   
+    /// This error is raised when the core objects for OctopusKit have not been initialized correctly during the application launch cycle.
+    ///
+    /// Used by `OKGameCoordinator` and `OKViewController`.
+    case invalidConfiguration(String)
+    
 }

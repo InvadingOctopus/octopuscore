@@ -72,8 +72,17 @@ public struct OKLog {
     public static var currentFrame: UInt64 {
         // ⚠️ Trying to access `OctopusKit.shared.currentScene` at the very beginning of the application results in an exception like "Simultaneous accesses to 0x100e8f748, but modification requires exclusive access", so we delay it by checking something like `gameCoordinator.didEnterInitialState`
         
-        // TODO: PLACEHOLDER: Removed in OctopusCore: Cannot have support for frame-counting with a game rendering framework.
+#if OCTOPUSKIT
+        if  OctopusKit.shared?.gameCoordinator.didEnterInitialState ?? false {
+            return OctopusKit.shared.currentScene?.currentFrameNumber ?? 0
+        } else {
+            return 0
+        }
+#else
+        // PLACEHOLDER: Removed in OctopusCore: Cannot have support for frame-counting without a game rendering framework.
         return 1
+#endif
+        
     }
     
     /// Returns `true` if the `currentFrame` count is higher than `lastFrameLogged`.
