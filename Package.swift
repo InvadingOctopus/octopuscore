@@ -30,7 +30,7 @@ let package = Package(
             name: "OctopusCore",
             dependencies: [],
             exclude: [
-                "Apple API Extensions/SwiftUI/OctopusUI.md"],
+                ],
             resources: [
                 ]
 //          , swiftSettings: [                // MARK: - Conditional Compilation Flags
