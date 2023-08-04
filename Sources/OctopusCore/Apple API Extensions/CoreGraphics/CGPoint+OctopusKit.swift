@@ -9,7 +9,6 @@
 // TODO: Tests
 
 import CoreGraphics
-import SpriteKit
 
 public extension CGPoint {
     

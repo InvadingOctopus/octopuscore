@@ -11,7 +11,6 @@
 // CREDIT: https://github.com/raywenderlich/SKTUtils/blob/master/SKTUtils/CGVector%2BExtensions.swift
 
 import CoreGraphics
-import SpriteKit
 
 public extension CGVector {
 

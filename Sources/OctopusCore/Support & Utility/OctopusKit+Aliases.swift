@@ -12,7 +12,7 @@
 
 // NOTE: STYLE: The engine API should use the original types for specific clarity in cases where the alias may not be immediately clear.
 
-import SpriteKit
+import Foundation
 
 /// A closure that takes no arguments and does not return any value.
 public typealias Closure           = () -> Void // DESIGN: It's not Closure<T> because this is meant for keeping text clutter to a minimum.

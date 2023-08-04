@@ -7,15 +7,11 @@
 //
 
 import Foundation
-import SpriteKit
 
 /// A protocol for types that have a `name` property.
 public protocol Nameable {
     var name: String? { get }
 }
-
-extension SKNode:      Nameable {}
-extension SKTileGroup: Nameable {}
 
 public extension Collection where Element: Nameable {
     

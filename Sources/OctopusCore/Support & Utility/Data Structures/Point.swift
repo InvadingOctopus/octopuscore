@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SpriteKit
+import CoreGraphics
 
 /// A structure that contains a point in a two-dimensional coordinate system, using integer coordinates.
 public struct Point: Equatable, Codable {
