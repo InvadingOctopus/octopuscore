@@ -10,7 +10,7 @@ import Foundation
 
 public typealias OctopusLogEntry = OKLogEntry
 
-/// An entry in an `OKLog`.
+/// An entry in an `OKLogPrint`.
 public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
     
     // MARK: - Properties
@@ -47,19 +47,19 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
     public var description: String {
         let text = self.text // CHECK: Trim whitespace?
         
-        return ("\(OKLog.formattedTimeString(time: self.time))\(text.isEmpty ? "" : " ")\(text)")
+        return ("\(OKLogPrint.formattedTimeString(time: self.time))\(text.isEmpty ? "" : " ")\(text)")
     }
     
     /// Returns a string with the entry's recorded time as formatted by the global `OKLog.timeFormatter`.
     @inlinable
     public var timeString: String {
-        OKLog.formattedTimeString(time: self.time)
+        OKLogPrint.formattedTimeString(time: self.time)
     }
     
     /// Returns a string with the number of the frame for which this entry was recorded, with an optional marker if this was the first entry for that frame.
     @inlinable
     public var frameString: String {
-        "F" + "\(frame)".paddedWithSpace(toLength: OKLog.frameLength) + "\(isNewFrame ? "•" : " ")"
+        "F" + "\(frame)".paddedWithSpace(toLength: OKLogPrint.frameLength) + "\(isNewFrame ? "•" : " ")"
     }
     
     /// Returns a concatenation of `timeString` and `frameString`.
@@ -79,7 +79,7 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
             #""\#(function  )""#,
             #""\#(object    )""#,
             #""\#(text      )""#,
-        ].joined(separator: OKLog.csvDelimiter)
+        ].joined(separator: OKLogPrint.csvDelimiter)
         
         return csv
     }
@@ -99,8 +99,8 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
     public init(
         prefix:     String  = "",
         time:       Date    = Date(),
-        frame:      UInt64  = OKLog.currentFrame,
-        isNewFrame: Bool    = OKLog.isNewFrame,
+        frame:      UInt64  = OKLogPrint.currentFrame,
+        isNewFrame: Bool    = OKLogPrint.isNewFrame,
         text:       String  = "",
         topic:      String  = #file,
         function:   String  = #function,
@@ -123,7 +123,7 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
     ///
     /// - Parameters:
     ///
-    ///   - suffix: The `String` to append to the end of the printed `text`. Omitted if `useNSLog`, `asCSV` or `OKLog.printTextOnSecondLine` is `true`. Default: `nil`
+    ///   - suffix: The `String` to append to the end of the printed `text`. Omitted if `useNSLog`, `asCSV` or `OKLogPrint.printTextOnSecondLine` is `true`. Default: `nil`
     ///
     ///   - asCSV: If `true` then the entry is printed as a CSV row.
     ///
@@ -164,14 +164,14 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
             } else {
                 // TODO: Truncate filenames with "…"
                 
-                if  OKLog.printEmptyLineBetweenFrames && isNewFrame {
+                if  OKLogPrint.printEmptyLineBetweenFrames && isNewFrame {
                     Swift.print()
                 }
                 
-                let paddedPrefix = prefix.paddedWithSpace(toLength: OKLog.prefixLength)
-                let paddedTopic  = topic .paddedWithSpace(toLength: OKLog.topicLength)
+                let paddedPrefix = prefix.paddedWithSpace(toLength: OKLogPrint.prefixLength)
+                let paddedTopic  = topic .paddedWithSpace(toLength: OKLogPrint.topicLength)
                  
-                if  OKLog.printTextOnSecondLine {
+                if  OKLogPrint.printTextOnSecondLine {
                     printedText = """
                     \(self.timeAndFrameString) \(paddedPrefix) \(topic) \(object)
                     \(function)\(text)
@@ -186,7 +186,7 @@ public struct OKLogEntry: Identifiable, Hashable, CustomStringConvertible {
             
             // NOTE: We cannot rely on the count of entries to determine whether to print an empty line, as there may be multiple logs printing to the debug console, so just add an empty line after all entries. :)
             
-            if !asCSV, OKLog.printEmptyLineBetweenEntries { Swift.print() }
+            if !asCSV, OKLogPrint.printEmptyLineBetweenEntries { Swift.print() }
         }
         
         return printedText

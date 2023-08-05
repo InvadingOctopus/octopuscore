@@ -12,7 +12,7 @@ final class OKLogTests: XCTestCase {
     
     func testLog() {
         let logName = "Test Log"
-        var testLog = OKLog(title: logName, useNSLog: false)
+        var testLog = OKLogPrint(title: logName, useNSLog: false)
         XCTAssert(testLog.title == logName, "Log name does not match string it was initialized with.")
         
         let firstEntry = "First Log Entry"
@@ -31,6 +31,6 @@ final class OKLogTests: XCTestCase {
     }
     
     static var allTests = [
-        ("Test OKLog", testLog)
+        ("Test OKLogPrint", testLog)
         ]
 }
