@@ -1,5 +1,5 @@
 //
-//  OKLog.swift
+//  OKLogPrint.swift
 //  OctopusKit
 //
 //  Created by ShinryakuTako@invadingoctopus.io on 2014-29-06
@@ -10,21 +10,13 @@
 
 import Foundation
 
-public typealias OctopusLog = OKLog
-
-public extension OctopusKit {
-    
-    /// Contains all the entries that are logged to any log. May be used for displaying all entries in a log viewer.
-    fileprivate(set) static var unifiedLog = OKLog (title: "Combined Logs", prefix: "🐙")
-
-}
-
 /// An object that keeps a list of log entries, prefixing each entry with a customizable time format and the name of the file and function that added the entry. Designed to optimize readability in the Xcode debug console.
 ///
-/// Use multiple `OKLog`s to separate different concerns, such as warnings from errors, and to selectively enable or disable specific logs.
+/// Use multiple `OKLogPrint`s to separate different concerns, such as warnings from errors, and to selectively enable or disable specific logs.
 ///
 /// The log allows entries with no text, so you can simply log the time and name of function and method calls.
-public struct OKLog {
+@available(*, deprecated, message: "Use the new OKLog which is based on Xcode and Swift's structured logging features.")
+public struct OKLogPrint {
     
     // CHECK: Cocoa Notifications?
     // CHECK: Adopt `os_log`?
@@ -103,20 +95,20 @@ public struct OKLog {
         return timeFormatter
     }()
     
-    /// Returns a string with the specified time as formatted by the global `OKLog.timeFormatter`.
+    /// Returns a string with the specified time as formatted by the global `OKLogPrint.timeFormatter`.
     @inlinable
     public static func formattedTimeString(time: Date) -> String {
         // TODO: A better way to get nanoseconds like `NSLog`
         
         let nanoseconds = "\(Calendar.current.component(.nanosecond, from: time))".prefix(6)
-        let time        = OKLog.timeFormatter.string(from: time)
+        let time        = OKLogPrint.timeFormatter.string(from: time)
         
         let timeWithNanoseconds = "\(time).\(nanoseconds)"
         
         return timeWithNanoseconds
     }
     
-    /// Returns a string with the current time as formatted by the global `OKLog.timeFormatter`.
+    /// Returns a string with the current time as formatted by the global `OKLogPrint.timeFormatter`.
     @inlinable
     public static func currentTimeString() -> String {
         formattedTimeString(time: Date())
@@ -143,12 +135,12 @@ public struct OKLog {
         
         let currentFrameNumberString = " F" + "\(currentFrame)".paddedWithSpace(toLength: frameLength) + "\(isNewFrame ? "•" : " ")"
         
-        /// BUG FIXED: Set `lastFrameLogged` in `OKLog.add(...)` instead of here, so that `OKLogEntry.init(...)` has a chance to check `isNewFrame` correctly.
+        /// BUG FIXED: Set `lastFrameLogged` in `OKLogPrint.add(...)` instead of here, so that `OKLogEntry.init(...)` has a chance to check `isNewFrame` correctly.
         
         return currentFrameNumberString
     }
     
-    /// Returns a string with the current time formatted by the global `OKLog.timeFormatter` and the number of the frame being rendered by the current scene, if any.
+    /// Returns a string with the current time formatted by the global `OKLogPrint.timeFormatter` and the number of the frame being rendered by the current scene, if any.
     @inlinable
     public static func currentTimeAndFrame() -> String {
         currentTimeString() + currentFrameString()
@@ -281,8 +273,8 @@ public struct OKLog {
         
         let newEntry = OKLogEntry(prefix:       self.prefix,
                                   time:         time,
-                                  frame:        OKLog.currentFrame,
-                                  isNewFrame:   OKLog.isNewFrame,
+                                  frame:        OKLogPrint.currentFrame,
+                                  isNewFrame:   OKLogPrint.isNewFrame,
                                   text:         text,
                                   topic:        topic,
                                   function:     function,
@@ -293,7 +285,7 @@ public struct OKLog {
         /// Print the entry to the debug console or `NSLog`. Save the printed output to repeat in case of a `fatalError` ahead.
         
         let consoleText = newEntry.print(suffix:    self.suffix,
-                                         asCSV:     OKLog.printAsCSV,
+                                         asCSV:     OKLogPrint.printAsCSV,
                                          useNSLog:  useNSLog)
         
         // Also append the entry to the global unified log. Useful for a log viewer.
@@ -302,7 +294,7 @@ public struct OKLog {
         
         /// Remember the last frame we logged, so that we can highlight the first entries logged during a frame, and insert an empty line between future frames if `printEmptyLineBetweenFrames` is set.
         
-        OKLog.lastFrameLogged = OKLog.currentFrame
+        OKLogPrint.lastFrameLogged = OKLogPrint.currentFrame
         
         /// If the `breakpointOnNewEntry` flag is set and we're running in `DEBUG` mode, create a breakpoint programmatically.
         
@@ -338,7 +330,7 @@ public struct OKLog {
     
     /// Returns a string containing all entries, e.g. for exporting.
     @inlinable
-    public func dumpAllEntries(asCSV: Bool = OKLog.printAsCSV) -> String
+    public func dumpAllEntries(asCSV: Bool = OKLogPrint.printAsCSV) -> String
     {
         var dump: String = ""
         
@@ -358,7 +350,7 @@ public struct OKLog {
 
 // MARK: - Codable
 
-extension OKLog: Codable {
+extension OKLogPrint: Codable {
     enum CodingKeys: String, CodingKey {
         /// ℹ️ Exclude the long and unnecessary `id` strings.
         case title, prefix, suffix
