@@ -8,7 +8,7 @@
 import XCTest
 @testable import OctopusCore
 
-final class OKLogTests: XCTestCase {
+final class OKLogPrintTests: XCTestCase {
     
     func testLog() {
         let logName = "Test Log"
