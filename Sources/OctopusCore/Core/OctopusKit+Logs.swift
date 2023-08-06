@@ -8,39 +8,33 @@
 
 //  Logs are in a separate extension for convenience, e.g. so that a project may replace them with its own versions.
 
-public extension OctopusKit {
+import OSLog
+
+public extension OKLog {
     
     // MARK: Global Logs
     
     /// A log for core or general engine events.
-    static var logForFramework  = OKLog(title: "Framework", prefix: "⚙️")
-    
-    /// A log for transitions within game states and entity states.
-    static var logForStates     = OKLog(title: "States",    prefix: "🚦", suffix: "🚦")
-    
-    /// A log for the components architecture, including entities and component systems.
-    static var logForComponents = OKLog(title: "ECS",       prefix: "🧩", suffix: "🧩")
-    
+    static let logForFramework  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚙️ Framework")
+            
     /// A log for operations that involve loading, downloading, caching and writing game assets and related resources.
-    static var logForResources  = OKLog(title: "Resources", prefix: "📦", suffix: "📦")
-    
-    /// A log for the cycle of turn updates in a turn-based game.
-    static var logForTurns      = OKLog(title: "Turns",     prefix: "🔄", suffix: "🔄")
+    static let logForResources  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "📦 Resources")
     
     /// A log for deinitializations; when an object is freed from memory.
-    static var logForDeinits    = OKLog(title: "Deinits",   prefix: "💀", suffix: "💀")
+    static let logForDeinits    = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💀 Deinits")
     
     /// A log for events that may cause unexpected behavior but *do not* prevent continued execution.
     ///
     /// Enabling the `breakpointOnNewEntry` flag will trigger a breakpoint after each new entry, if the `DEBUG` conditional compilation flag is set, allowing you to review the state of the application and resume execution if running within Xcode.
-    static var logForWarnings   = OKLog(title: "Warnings",  prefix: "⚠️", suffix: "⚠️", breakpointOnNewEntry: false)
+    static let logForWarnings   = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚠️ Warnings")
     
     /// A log for severe errors that may prevent continued execution. Adding an entry to this log will raise a `fatalError` and terminate the application.
-    static var logForErrors     = OKLog(title: "Errors",    prefix: "🚫", suffix: "🚫", haltApplicationOnNewEntry: true)
+    static let logForErrors     = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🚫 Errors")
     
     /// A log for verbose debugging information.
-    static var logForDebug      = OKLog(title: "Debugging", prefix: "🐞")
+    static let logForDebug      = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🐞 Debug")
     
     /// A log for developer tips to assist with fixing warnings and errors.
-    static var logForTips       = OKLog(title: "Tips",      prefix: "💡")
+    static let logForTips       = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💡 Tips")
+    
 }
