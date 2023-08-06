@@ -15,6 +15,7 @@ extension OctopusKit {
         
         /// A collection of strings for the names of entities etc., to avoid hard-coding text and prevent typos during searches or comparisons etc.
         public enum Strings {
+            public static let octopusKitBundleID = "io.InvadingOctopus.OctopusKit"
             public static let gameCoordinatorEntityName = "Game Coordinator Entity"
         }
         
