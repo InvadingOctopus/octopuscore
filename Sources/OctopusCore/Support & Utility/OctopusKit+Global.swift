@@ -58,46 +58,46 @@ public func debugLog(_ entry:   String? = nil,
     // Trim and pad the calling file's name.
     
     let prefix       = "◾️"
-    let paddedPrefix = prefix.paddedWithSpace(toLength: OKLogPrint.prefixLength)
+    let paddedPrefix = prefix.paddedWithSpace(toLength: OKLog.prefixLength)
     let topic        = ((topic as NSString).lastPathComponent as NSString).deletingPathExtension
-    let paddedTopic  = topic.paddedWithSpace(toLength: OKLogPrint.topicLength)
+    let paddedTopic  = topic.paddedWithSpace(toLength: OKLog.topicLength)
     let entry        = entry ?? ""
     let entryWithSeparatorIfNeeded = entry.isEmpty ? "" : "\(separator)\(entry)"
     
-    if  OKLogPrint.printAsCSV {
+    if  OKLog.printAsCSV {
         
         let csv = [
-            OKLogPrint.currentTimeString(),
-            String(OKLogPrint.currentFrame), // DESIGN: Use a more compact string instead of the formatted `frameString`
+            OKLog.currentTimeString(),
+            String(OKLog.currentFrame), // DESIGN: Use a more compact string instead of the formatted `frameString`
             #""DEBUG""#,                // The prefix for CSV.
             #""\#(topic     )""#,
             #""\#(function  )""#,
             "",                         // No object.
             #""\#(entry     )""#
-        ].joined(separator: OKLogPrint.csvDelimiter)
+        ].joined(separator: OKLog.csvDelimiter)
         
         print(csv)
         
     } else {
         
-        if OKLogPrint.printTextOnSecondLine {
+        if OKLog.printTextOnSecondLine {
             
             print("""
-                \(OKLogPrint.currentTimeAndFrame())\(separator)\(paddedPrefix)\(separator)\(paddedTopic)
+                \(OKLog.currentTimeAndFrame())\(separator)\(paddedPrefix)\(separator)\(paddedTopic)
                 \(function)\(entryWithSeparatorIfNeeded)
                 """)
             
         } else {
             
-            print("\(OKLogPrint.currentTimeAndFrame())\(separator)\(paddedPrefix)\(separator)\(paddedTopic)\(separator)\(function)\(entryWithSeparatorIfNeeded)")
+            print("\(OKLog.currentTimeAndFrame())\(separator)\(paddedPrefix)\(separator)\(paddedTopic)\(separator)\(function)\(entryWithSeparatorIfNeeded)")
         }
         
-        if OKLogPrint.printEmptyLineBetweenEntries { print() } // Only print empty lines if not CSV.
+        if OKLog.printEmptyLineBetweenEntries { print() } // Only print empty lines if not CSV.
     }
     
     // Update the last frame counter (so that the next entry for the same frame doesn't get highlighted as the first entry and so on).
     
-    OKLogPrint.lastFrameLogged = OKLogPrint.currentFrame
+    OKLog.lastFrameLogged = OKLog.currentFrame
 }
 
 /// Alias for `NSLog(_:_:)` in debug configurations (when the `DEBUG` compilation flag is set). A blank function in non-debug configurations.
