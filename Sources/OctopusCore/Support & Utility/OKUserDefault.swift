@@ -48,7 +48,7 @@ public typealias OctopusUserDefault = OKUserDefault
                 // OctopusKit.logForDebug("\"\(key)\" \(ValueType.self) = \(value)") // ❕ May spam the log when this is accessed every frame.
                 return value
             } else {
-                OctopusKit.logForDebug("\"\(key)\" \(ValueType.self) not found, defaultValue = \(defaultValue) ❗️")
+                OKLog.logForDebug.debug("\"\(key)\" \(ValueType.self) not found, defaultValue = \(defaultValue) ❗️")
                 return defaultValue
             }
         }
@@ -74,10 +74,10 @@ public typealias OctopusUserDefault = OKUserDefault
     public static func preference(forKey key: String) -> ValueType? {
         // CHECK: `preference<T>` removed for Swift 6 conformance; should it be brought back?
         if  let value = UserDefaults.standard.object(forKey: key) as? ValueType {
-            OctopusKit.logForDebug("\"\(key)\" \(ValueType.self) = \(value)")
+            OKLog.logForDebug.debug("\"\(key)\" \(ValueType.self) = \(value)")
             return value
         } else {
-            OctopusKit.logForDebug("\"\(key)\" \(ValueType.self) not found ❗️")
+            OKLog.logForDebug.debug("\"\(key)\" \(ValueType.self) not found ❗️")
             return nil
         }
     }

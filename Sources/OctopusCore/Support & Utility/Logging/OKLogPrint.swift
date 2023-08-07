@@ -171,7 +171,7 @@ public struct OKLogPrint {
     public subscript(index: Int) -> OKLogEntry {
         // ℹ️ An out-of-bounds index should not crash the game just for logging. :)
         guard index >= 0 && index < entries.count else {
-            OctopusKit.logForErrors("Index \(index) out of bounds (\(entries.count) entries) — Returning dummy `OKLogEntry`")
+            OKLog.logForErrors.debug("Index \(index) out of bounds (\(entries.count) entries) — Returning dummy `OKLogEntry`")
             return OKLogEntry(time: Date())
         }
         
@@ -183,7 +183,7 @@ public struct OKLogPrint {
     public subscript(index: Int) -> String {
         // ℹ️ An out-of-bounds index should not crash the game just for logging. :)
         guard index >= 0 && index < entries.count else {
-            OctopusKit.logForErrors("Index \(index) out of bounds (\(entries.count) entries) — Returning empty string")
+            OKLog.logForErrors.debug("Index \(index) out of bounds (\(entries.count) entries) — Returning empty string")
             return ""
         }
         
