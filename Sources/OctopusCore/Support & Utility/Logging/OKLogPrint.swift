@@ -290,7 +290,7 @@ public struct OKLogPrint {
         
         // Also append the entry to the global unified log. Useful for a log viewer.
         
-        OctopusKit.unifiedLog.entries.append(newEntry)
+        // REMOVED: OctopusKit.unifiedLog.entries.append(newEntry)
         
         /// Remember the last frame we logged, so that we can highlight the first entries logged during a frame, and insert an empty line between future frames if `printEmptyLineBetweenFrames` is set.
         
