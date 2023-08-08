@@ -46,7 +46,7 @@ public typealias OctopusUserDefault = OKUserDefault
         
         get {
             if  let value = UserDefaults.standard.object(forKey: key) as? ValueType {
-                // OctopusKit.logForDebug("\"\(key)\" \(ValueType.self) = \(value)") // ❕ May spam the log when this is accessed every frame.
+                // OKLog.logForDebug("\"\(key)\" \(ValueType.self) = \(value)") // ❕ May spam the log when this is accessed every frame.
                 return value
             } else {
                 OKLog.logForDebug.debug("\(📜("\"\(key)\" \(ValueType.self) not found, defaultValue = \(defaultValue) ❗️"))")
