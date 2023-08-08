@@ -48,11 +48,11 @@ public extension FixedWidthInteger {
         // Since the `exclusions` list is a `Set`, which prevents repeated values, if the count of elements in the set is same as `max`, then it MAY mean that any possible number is unacceptable! However, the exclusion list may also have values below `0` or above `max`, but checking for every possible value in the entire range may be too inefficient, so we'll just compare the two arguments and log a warning.
         
         if  exclusions.count == upperBound {
-            OKLog.logForWarnings.debug("\(📜("`exclusions` set has \(upperBound) values — Make sure it does not prevent every possible number within 0..<\(upperBound)"))")
+            OKLog.warnings.debug("\(📜("`exclusions` set has \(upperBound) values — Make sure it does not prevent every possible number within 0..<\(upperBound)"))")
         }
         
         if  maximumAttempts > maximumAttemptsWarningThreshold {
-            OKLog.logForWarnings.debug("\(📜("`maximumAttempts` may be too high: \(maximumAttempts) (warning threshold: \(maximumAttemptsWarningThreshold)"))")
+            OKLog.warnings.debug("\(📜("`maximumAttempts` may be too high: \(maximumAttempts) (warning threshold: \(maximumAttemptsWarningThreshold)"))")
         }
         
         // If there are no exclusions, just return the first random number generated.
@@ -76,7 +76,7 @@ public extension FixedWidthInteger {
             if !exclusions.contains(randomNumber) {
                 return randomNumber
             } else {
-                OKLog.logForWarnings.debug("\(📜("Could not generate any number that is not in `exclusions` (count: \(exclusions.count)) in \(attempts) attempts."))")
+                OKLog.warnings.debug("\(📜("Could not generate any number that is not in `exclusions` (count: \(exclusions.count)) in \(attempts) attempts."))")
                 return nil
             }
         }

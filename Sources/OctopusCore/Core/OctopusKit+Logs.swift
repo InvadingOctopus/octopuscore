@@ -15,26 +15,26 @@ public extension OKLog {
     // MARK: Global Logs
     
     /// A log for core or general engine events.
-    static let logForFramework  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚙️ Framework")
+    static let framework  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚙️ Framework")
             
     /// A log for operations that involve loading, downloading, caching and writing game assets and related resources.
-    static let logForResources  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "📦 Resources")
+    static let resources  = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "📦 Resources")
     
     /// A log for deinitializations; when an object is freed from memory.
-    static let logForDeinits    = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💀 Deinits")
+    static let deinits    = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💀 Deinits")
     
     /// A log for events that may cause unexpected behavior but *do not* prevent continued execution.
     ///
     /// Enabling the `breakpointOnNewEntry` flag will trigger a breakpoint after each new entry, if the `DEBUG` conditional compilation flag is set, allowing you to review the state of the application and resume execution if running within Xcode.
-    static let logForWarnings   = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚠️ Warnings")
+    static let warnings   = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "⚠️ Warnings")
     
     /// A log for severe errors that may prevent continued execution. Adding an entry to this log will raise a `fatalError` and terminate the application.
-    static let logForErrors     = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🚫 Errors")
+    static let errors     = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🚫 Errors")
     
     /// A log for verbose debugging information.
-    static let logForDebug      = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🐞 Debug")
+    static let debug      = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "🐞 Debug")
     
     /// A log for developer tips to assist with fixing warnings and errors.
-    static let logForTips       = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💡 Tips")
+    static let tips       = Logger(subsystem: OctopusKit.Constants.Strings.octopusKitBundleID, category: "💡 Tips")
     
 }

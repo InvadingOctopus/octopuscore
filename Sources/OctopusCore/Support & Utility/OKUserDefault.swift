@@ -46,10 +46,10 @@ public typealias OctopusUserDefault = OKUserDefault
         
         get {
             if  let value = UserDefaults.standard.object(forKey: key) as? ValueType {
-                // OKLog.logForDebug("\"\(key)\" \(ValueType.self) = \(value)") // ❕ May spam the log when this is accessed every frame.
+                // OKLog.debug("\"\(key)\" \(ValueType.self) = \(value)") // ❕ May spam the log when this is accessed every frame.
                 return value
             } else {
-                OKLog.logForDebug.debug("\(📜("\"\(key)\" \(ValueType.self) not found, defaultValue = \(defaultValue) ❗️"))")
+                OKLog.debug.debug("\(📜("\"\(key)\" \(ValueType.self) not found, defaultValue = \(defaultValue) ❗️"))")
                 return defaultValue
             }
         }
@@ -75,10 +75,10 @@ public typealias OctopusUserDefault = OKUserDefault
     public static func preference(forKey key: String) -> ValueType? {
         // CHECK: `preference<T>` removed for Swift 6 conformance; should it be brought back?
         if  let value = UserDefaults.standard.object(forKey: key) as? ValueType {
-            OKLog.logForDebug.debug("\(📜("\"\(key)\" \(ValueType.self) = \(value)"))")
+            OKLog.debug.debug("\(📜("\"\(key)\" \(ValueType.self) = \(value)"))")
             return value
         } else {
-            OKLog.logForDebug.debug("\(📜("\"\(key)\" \(ValueType.self) not found ❗️"))")
+            OKLog.debug.debug("\(📜("\"\(key)\" \(ValueType.self) not found ❗️"))")
             return nil
         }
     }
@@ -90,7 +90,7 @@ public typealias OctopusUserDefault = OKUserDefault
         
         // NOTE: It seems best to call this from `NSApplicationDelegate.applicationWillFinishLaunching(_:)`, not `...DidFinishLaunching`, at least in an `NSDocument`-based app..
         
-        OKLog.logForFramework.debug("\(📜("plistName: \(plistName)"))")
+        OKLog.framework.debug("\(📜("plistName: \(plistName)"))")
         
         guard
             let path = Bundle.main.path(forResource: plistName, ofType: "plist"),

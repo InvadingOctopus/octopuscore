@@ -244,7 +244,7 @@ public struct ContiguousArray2D <Element> {
             newCoordinates.y    -= steps
             
         default:
-            OKLog.logForErrors.debug("\(📜("Invalid direction: \(direction)"))")
+            OKLog.errors.debug("\(📜("Invalid direction: \(direction)"))")
             return(newCoordinates, nil)
         }
         

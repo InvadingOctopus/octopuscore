@@ -49,14 +49,14 @@ public final class OKCache <AssetKeyType: Hashable, AssetType> {
     }
     
     public func getAsset(forKey key: AssetKeyType) -> AssetType? { // mutating
-        // OKLog.logForResources.debug("\(📜("\(key)"))")
+        // OKLog.resources.debug("\(📜("\(key)"))")
         
         if let asset = assets[key] {
-            // OKLog.logForResources.debug("\(📜("Asset in cache"))")
+            // OKLog.resources.debug("\(📜("Asset in cache"))")
             return asset
             
         } else if let asset = assetLoader(key) {
-            // OKLog.logForResources.debug("\(📜("Asset loaded and cached"))")
+            // OKLog.resources.debug("\(📜("Asset loaded and cached"))")
             assets[key] = asset
             return asset
             
@@ -72,9 +72,9 @@ public final class OKCache <AssetKeyType: Hashable, AssetType> {
     /// MARK: - Debugging
     
     public func printAssets() {
-        OKLog.logForResources.debug("\(📜("assets.count = \(assets.count)"))")
+        OKLog.resources.debug("\(📜("assets.count = \(assets.count)"))")
         for key in assets.keys {
-            OKLog.logForResources.debug("\(📜("key = \(key), asset = \(assets[key])"))")
+            OKLog.resources.debug("\(📜("key = \(key), asset = \(assets[key])"))")
         }
     }
     
