@@ -24,7 +24,7 @@ public typealias OctopusLog = OKLog
 
 /// Prefix the current frame of the scene to the provided string. This is a temporary workaround to allow `OSLog.Logger` to include a link to the file and line which generates a log entry, by interpolating the string of each log message, instead of calling a custom logging function, which would cause all logging entries to be shown as originating from the custom logging function.
 @inlinable
-public func 📜(_ text: String) -> String {
+public func 📜(_ text: String = "") -> String {
     // TODO: Find a better solution :)
     // CHECK: Update `OKLog.lastFrameLogged`?
     return "\(OKLog.currentFrame) \(text)" // TODO: Pad frame counter digits
