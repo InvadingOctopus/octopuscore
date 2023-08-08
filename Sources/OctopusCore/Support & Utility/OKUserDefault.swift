@@ -90,7 +90,7 @@ public typealias OctopusUserDefault = OKUserDefault
         
         // NOTE: It seems best to call this from `NSApplicationDelegate.applicationWillFinishLaunching(_:)`, not `...DidFinishLaunching`, at least in an `NSDocument`-based app..
         
-        OctopusKit.logForFramework()
+        OKLog.logForFramework.debug("\(📜("plistName: \(plistName)"))")
         
         guard
             let path = Bundle.main.path(forResource: plistName, ofType: "plist"),
