@@ -10,6 +10,7 @@
 // TODO: Reevaluate names according to Swift API guidelines.
 
 import Foundation
+import OSLog
 
 public typealias OctopusUserDefault = OKUserDefault
 
