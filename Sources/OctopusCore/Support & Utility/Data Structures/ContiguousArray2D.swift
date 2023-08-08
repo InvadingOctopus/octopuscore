@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// A 2D array that supports viewports and rotation.
 public struct ContiguousArray2D <Element> {

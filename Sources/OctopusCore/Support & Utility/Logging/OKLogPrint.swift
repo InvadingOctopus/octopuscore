@@ -9,6 +9,7 @@
 /// 💡 SEE ALSO: `debugLog(...)` in `OctopusKit+Global.swift`
 
 import Foundation
+import OSLog
 
 /// An object that keeps a list of log entries, prefixing each entry with a customizable time format and the name of the file and function that added the entry. Designed to optimize readability in the Xcode debug console.
 ///

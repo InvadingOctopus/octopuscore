@@ -9,6 +9,7 @@
 // TODO: Tests
 
 import Foundation
+import OSLog
 
 public extension FixedWidthInteger {
 
